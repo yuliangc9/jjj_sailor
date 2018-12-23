@@ -1,0 +1,31 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "roadmove",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.0166666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": "2",
+  "curveData": {
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 1.0166666666666666,
+          "value": -1920
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "frame": 1.0166666666666666,
+      "func": "onRoadUpdate",
+      "params": []
+    }
+  ]
+}
