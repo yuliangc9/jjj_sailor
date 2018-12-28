@@ -85,6 +85,8 @@ cc.Class({
             return leaderboard.getConnectedPlayerEntriesAsync(100, 0);
         })
         .then(function(entries) {
+            self.road.getComponent("road").placeFriendScore(entries);
+
             entries.forEach(function(entry){
                 console.log("hehehehhehehehhehehe", entry.getPlayer().getPhoto());
                 console.log(entry.getRank());
@@ -95,6 +97,22 @@ cc.Class({
             if (entries.length == 0) {
                 self.bestPhoto.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(FBInstant.player.getPhoto());
             }
+        });
+
+        self.preloadedInterstitial = null;
+        self.adReady = false;
+
+        FBInstant.getInterstitialAdAsync(
+          '2227903747498555_2274431622845767', // Your Ad Placement Id
+        ).then(function(interstitial) {
+          // Load the Ad asynchronously
+          self.preloadedInterstitial = interstitial;
+          return self.preloadedInterstitial.loadAsync();
+        }).then(function() {
+          console.log('Interstitial preloaded');
+          self.adReady = true;
+        }).catch(function(err){
+          console.error('Interstitial failed to preload: ' + err.message);
         });
 
         return;
@@ -183,6 +201,19 @@ cc.Class({
                         });
                     });
             });
+
+            setTimeout(function() {
+                if (self.adReady) {
+                    self.preloadedInterstitial.showAsync()
+                    .then(function() {
+                        // Perform post-ad success operation
+                        console.log('Interstitial ad finished successfully');        
+                    })
+                    .catch(function(e) {
+                        console.error(e.message);
+                    });
+                }
+            }, 3300);
 
             return;
         }

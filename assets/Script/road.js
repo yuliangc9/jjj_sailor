@@ -75,6 +75,10 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
+        friendPan: {
+            default: null,
+            type: cc.Prefab,
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -97,6 +101,38 @@ cc.Class({
         this.placeStone(4 * this.node.width/5-this.node.width/2, true, false);
     },
 
+    placeFriendScore (records) {
+        console.log("start place friend record", records);
+
+        var _currentDistance = this.getDistance();
+        var i = 0;
+        for (i = records.length - 1; i >= 0; i--) {
+            console.log("init record", i);
+
+            var score = records[i].getScore();
+
+            //for test
+            //score = 50;
+
+            if (i % 2 == 0) {
+                this.placeOneScore(-this.node.width/2+100, score-_currentDistance, records[i].getPlayer().getName());
+            } else {
+                this.placeOneScore(this.node.width/2-100, score-_currentDistance, records[i].getPlayer().getName());
+            }
+        }
+    },
+
+    placeOneScore(posx, dist, photo) {
+        console.log("init record", posx, dist, dist*GlobalConfig.Pix2Distance, this.node.height, photo);
+        var newStone = cc.instantiate(this.friendPan);
+        newStone.getChildByName("name").getComponent(cc.Label).string = photo;
+        //newStone.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(photo);
+
+        this.node.addChild(newStone, 10);
+
+        newStone.setPosition(posx, dist*GlobalConfig.Pix2Distance/100 - this.node.height/2);
+    },
+
     placeStone (pos, isFirst, rever) {
         if (isFirst) {
             var timeRand = Math.random() * 5000 + 1000;
@@ -107,7 +143,7 @@ cc.Class({
 
         this.randomFlag++;
         if (this.randomFlag%4 == 0) {
-            var timeRand = Math.random() * 5000 + 1000;
+            var timeRand = Math.random() * 2000 + 4000;
             setTimeout(this.placeStone.bind(this), timeRand, pos, false, false);
             return;
         }
@@ -118,7 +154,8 @@ cc.Class({
             this.stone9];
 
         console.log("init stone");
-        var newStone = cc.instantiate(cars[parseInt(Math.random()*cars.length)]);
+        var randomCarNum = parseInt(Math.random()*cars.length);
+        var newStone = cc.instantiate(cars[randomCarNum]);
 
         this.node.addChild(newStone, 10);
         if (rever) {
@@ -138,6 +175,12 @@ cc.Class({
         var distance = runTime * randSpeed;
         newStone.runAction(cc.moveBy(runTime, 0, distance));
 
+        // if (randomCarNum == 1) {
+        //     setTimeout(() => {
+        //         cc.audioEngine.play(this.passAudio, false, 0.2);
+        //     }, (runTime - 3)*1000);
+        // }
+
         // var timeRand = (Math.random() * 3000 + 2000)/GlobalConfig.RoadSpeed * 1000;
         // console.log("place stone", pos, timeRand);
         // setTimeout(this.placeStone.bind(this), timeRand, pos, false, rever);
@@ -156,6 +199,10 @@ cc.Class({
         console.log("car num", this.node.children.length);
         for(var j = 2,len = this.node.children.length; j < len; j++){
             this.node.children[j].y -= this.node.height;
+
+            if (!this.node.children[j].rrandSpeed) {
+                continue;
+            }
 
             this.node.children[j].stopAllActions();
 

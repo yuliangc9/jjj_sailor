@@ -56,8 +56,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.13541666666666666,
-      "y": 0.13541666666666666,
+      "x": 0.16666666666666666,
+      "y": 0.16666666666666666,
       "z": 1
     },
     "_quat": {
@@ -67,7 +67,7 @@
       "z": 0,
       "w": 1
     },
-    "_localZOrder": 155,
+    "_localZOrder": 98,
     "groupIndex": 0,
     "autoReleaseAssets": false,
     "_id": "6cd52a93-c12c-4387-bc25-461eb5b9fcc8"
@@ -151,7 +151,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 156,
+    "_localZOrder": 99,
     "groupIndex": 0,
     "_id": "a286bbGknJLZpRpxROV6M94"
   },
@@ -212,7 +212,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 157,
+    "_localZOrder": 100,
     "groupIndex": 0,
     "_id": "dc9/0thvxKdavrP3yg42Gv"
   },
@@ -304,7 +304,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 158,
+    "_localZOrder": 101,
     "groupIndex": 0,
     "_id": "e2e0crkOLxGrpMxpbC4iQg1"
   },
@@ -420,6 +420,7 @@
     "stone9": {
       "__uuid__": "be3447d0-01f4-47b8-90ca-4852b2b0d5c6"
     },
+    "friendRecord": null,
     "_id": "8eI+Zx+w1PyYqLMR+ybHmD"
   },
   {
@@ -488,7 +489,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 159,
+    "_localZOrder": 102,
     "groupIndex": 0,
     "_id": "59Uw6waNJJTrJOTZZ/A2+o"
   },
@@ -527,7 +528,7 @@
     "node": {
       "__id__": 10
     },
-    "_enabled": true,
+    "_enabled": false,
     "bgm": {
       "__uuid__": "ad81b83e-b1b4-4779-bf59-d5d7d82c2573"
     },
@@ -637,7 +638,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 160,
+    "_localZOrder": 103,
     "groupIndex": 0,
     "_id": "50f3l2yFlMU6pB5X7ilcDn"
   },
@@ -766,7 +767,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 161,
+    "_localZOrder": 104,
     "groupIndex": 0,
     "_id": "f59bHK0QtBLJJvTpWeCyuA"
   },
@@ -868,7 +869,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 162,
+    "_localZOrder": 105,
     "groupIndex": 0,
     "_id": "ca8Xfzv8dMLIlTOf9YbnFa"
   },
@@ -957,7 +958,7 @@
       "width": 1080,
       "height": 1920
     },
-    "_fitWidth": false,
+    "_fitWidth": true,
     "_fitHeight": true,
     "_id": "bfSl4BmjRJ6I2jI89PV+Uq"
   },
@@ -1028,7 +1029,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 163,
+    "_localZOrder": 106,
     "groupIndex": 0,
     "_id": "6eAYZbZ8dAd5JPokkRvEu7"
   },
@@ -1117,7 +1118,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 164,
+    "_localZOrder": 107,
     "groupIndex": 0,
     "_id": "d2VZZoTb9AgL+fWpCfVxFY"
   },
@@ -1209,7 +1210,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 165,
+    "_localZOrder": 108,
     "groupIndex": 0,
     "_id": "bdEhoUlwZBAKOlQwkKAlFl"
   },
@@ -1325,7 +1326,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 166,
+    "_localZOrder": 109,
     "groupIndex": 0,
     "_id": "0fqsXpzkpFqLKGvOl6STPo"
   },
@@ -1340,8 +1341,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "转动方向盘控制你的汽车，\n不要碰到路上的其他车辆。\n看看你能行驶多远。\n\n对了，行驶最远的玩家将\n会占有你的方向盘哦。\n",
-    "_N$string": "转动方向盘控制你的汽车，\n不要碰到路上的其他车辆。\n看看你能行驶多远。\n\n对了，行驶最远的玩家将\n会占有你的方向盘哦。\n",
+    "_string": "转动方向盘控制你的汽车，\n不要碰到路上的其他车辆。\n看看你能行驶多远。\n\n对了，行驶最远的好友将\n会占有你的方向盘哦。\n",
+    "_N$string": "转动方向盘控制你的汽车，\n不要碰到路上的其他车辆。\n看看你能行驶多远。\n\n对了，行驶最远的好友将\n会占有你的方向盘哦。\n",
     "_fontSize": 80,
     "_lineHeight": 120,
     "_enableWrapText": true,
@@ -1421,7 +1422,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 167,
+    "_localZOrder": 110,
     "groupIndex": 0,
     "_id": "31Me/XW1NPZYHHTZM2VK6p"
   },
@@ -1482,7 +1483,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 0,
+    "_localZOrder": 111,
     "groupIndex": 0,
     "_id": "618gq9jYZAAJTZ4PuMmyD0"
   },
