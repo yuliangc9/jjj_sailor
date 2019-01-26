@@ -116,51 +116,6 @@ cc.Class({
         });
 
         return;
-
-        FBInstant.player.getConnectedPlayersAsync()
-            .then(function(players) {
-                var friends = {};
-                for (p in players) {
-                    friends[players[p].getID()] = players[p];
-                }
-                friends[FBInstant.player.getID()] = FBInstant.player;
-
-                self.friendsInfo = friends;
-
-                //get friends rank info
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
-                        var response = xhr.responseText;
-                        
-                        self.rankInfo = JSON.parse(response).content;
-                        //[{id:iii,score:sss}]
-
-                        //find best friend
-                        var bestFriend = "";
-                        var max = 0;
-                        for (var p in self.rankInfo) {
-                            if (max == 0) {
-                                bestFriend = self.rankInfo[p].userid;
-                                max = self.rankInfo[p].score;
-                                continue;
-                            }
-
-                            if (max < self.rankInfo[p].score) {
-                                bestFriend = self.rankInfo[p].userid;
-                                max = self.rankInfo[p].score;
-                            }
-                        }
-
-                        //replace wheel photo
-                        console.log(bestFriend, friends, self.rankInfo);
-                        self.bestPhoto.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(friends[bestFriend].getPhoto());
-                    }
-                };
-                xhr.open("POST", "https://"+GlobalConfig.Domain+"/score/query", true);
-                console.log("send ", Object.keys(friends));
-                xhr.send(JSON.stringify(Object.keys(friends)));
-            });
     },
 
     fail: function() {
@@ -195,7 +150,13 @@ cc.Class({
                             console.log(entry.getScore()); // 42
                             console.log(entry.getExtraData()); // '{race: "elf", level: 3}'
     
-                            rankLableShow += (entry.getScore())+"m    "+entry.getPlayer().getName()+"\n";
+                            scoreStr = (entry.getScore())+"m";
+                            spaceLen = 10 - scoreStr.length;
+                            spaceStr = "";
+                            for(i=0;i<spaceLen;i++) {
+                                spaceStr += " ";
+                            }
+                            rankLableShow += scoreStr+spaceStr+entry.getPlayer().getName()+"\n";
     
                             self.rankShow.string = rankLableShow;
                         });
@@ -218,34 +179,7 @@ cc.Class({
             return;
         }
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-        };
-        xhr.open("POST", "https://"+GlobalConfig.Domain+"/score/add", true);
-
-        xhr.send(JSON.stringify({"userid":FBInstant.player.getID(),"score":this.road.getComponent("road").getDistance()}));
-
-        console.log(this.rankInfo);
-        if (this.rankInfo) {
-            for (var i in this.rankInfo) {
-                if (this.rankInfo[i].userid == FBInstant.player.getID() && this.rankInfo[i].score < this.road.getComponent("road").getDistance()) {
-                    this.rankInfo[i].score = this.road.getComponent("road").getDistance();
-                    break;
-                }
-            }
-
-            this.finalRank = this.rankInfo.sort(function(a, b){
-                return a.score - b.score;
-            });
-
-            console.log(this.finalRank, this.friendsInfo);
-            var rankLableShow = "";
-            for (var i in this.finalRank) {
-                rankLableShow += (this.finalRank[i].score)+"m    "+this.friendsInfo[this.finalRank[i].userid].getName()+"\n";
-            }
-
-            this.rankShow.string = rankLableShow;
-        }
+        return;
     },
 
     updateRoadSpeed(b) {

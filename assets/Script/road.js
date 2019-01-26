@@ -95,10 +95,10 @@ cc.Class({
         this.randomFlag = 0;
 
         /**********place stone ********************/
-        this.placeStone(1 * this.node.width/5-this.node.width/2, true, false);
-        this.placeStone(2 * this.node.width/5-this.node.width/2, true, false);
-        this.placeStone(3 * this.node.width/5-this.node.width/2, true, false);
-        this.placeStone(4 * this.node.width/5-this.node.width/2, true, false);
+        this.placeStone(1 * this.node.width/8-this.node.width/2, true, false);
+        this.placeStone(3 * this.node.width/8-this.node.width/2, true, false);
+        this.placeStone(5 * this.node.width/8-this.node.width/2, true, false);
+        this.placeStone(7 * this.node.width/8-this.node.width/2, true, false);
     },
 
     placeFriendScore (records) {
@@ -130,7 +130,7 @@ cc.Class({
 
         this.node.addChild(newStone, 10);
 
-        newStone.setPosition(posx, dist*GlobalConfig.Pix2Distance/100 - this.node.height/2);
+        newStone.setPosition(posx, dist*GlobalConfig.Pix2Distance/100 + this.node.height/2);
     },
 
     placeStone (pos, isFirst, rever) {
@@ -143,7 +143,7 @@ cc.Class({
 
         this.randomFlag++;
         if (this.randomFlag%4 == 0) {
-            var timeRand = Math.random() * 2000 + 4000;
+            var timeRand = Math.random() * 2000 + 3000;
             setTimeout(this.placeStone.bind(this), timeRand, pos, false, false);
             return;
         }
@@ -192,6 +192,10 @@ cc.Class({
         if (this.rollCount%this.RoadTimes == 0) {
             this.distanceShow.string = parseInt(this.rollCount/this.RoadTimes)+"00m";
             this.distance.active = true;
+
+            if (this.rollCount/this.RoadTimes % 10 == 0) {
+                GlobalConfig.RoadSpeed *= 1.2;
+            }
         } else {
             this.distance.active = false;
         }
@@ -213,7 +217,7 @@ cc.Class({
                 console.log("one destroy");
                 s.destroy();
 
-                var timeRand = Math.random() * 5000;
+                var timeRand = Math.random() * 4000;
                 setTimeout(this.placeStone.bind(this), timeRand, s.ppos, false, false);
             }, this, this.node.children[j])));
         }
