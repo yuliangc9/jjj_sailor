@@ -22,6 +22,10 @@ cc.Class({
             default: null,
             type: cc.Label,
         },
+        rankShowName: {
+            default: null,
+            type: cc.Label,
+        },
         retryButton: cc.Button,
         shareButton: cc.Button,
         road: {
@@ -57,7 +61,7 @@ cc.Class({
             FBInstant.shareAsync({
                 intent: 'REQUEST',
                 image: GlobalConfig.ShareImage,
-                text: 'come to race!',
+                text: 'Can you drive farther than me?',
                 data: {},
               }).then(function() {
                 // continue with the game.
@@ -131,6 +135,7 @@ cc.Class({
 
         if (this.is_social) {
             var rankLableShow = "";
+            var rankLableShowName = "";
 
             FBInstant.getLeaderboardAsync('road_sailor_score_global')
             .then(function(leaderboard) {
@@ -150,15 +155,18 @@ cc.Class({
                             console.log(entry.getScore()); // 42
                             console.log(entry.getExtraData()); // '{race: "elf", level: 3}'
     
-                            scoreStr = (entry.getScore())+"m";
-                            spaceLen = 10 - scoreStr.length;
-                            spaceStr = "";
-                            for(i=0;i<spaceLen;i++) {
+                            var scoreStr = (entry.getScore())+"m";
+                            var spaceLen = 10 - scoreStr.length;
+                            var spaceStr = " ";
+                            var i = 0;
+                            for(i=1;i<spaceLen;i++) {
                                 spaceStr += " ";
                             }
-                            rankLableShow += scoreStr+spaceStr+entry.getPlayer().getName()+"\n";
+                            rankLableShow += scoreStr+"\n";
+                            rankLableShowName += entry.getPlayer().getName()+"\n";
     
                             self.rankShow.string = rankLableShow;
+                            self.rankShowName.string = rankLableShowName;
                         });
                     });
             });
