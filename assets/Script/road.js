@@ -86,7 +86,7 @@ cc.Class({
     onLoad () {
         this.rollCount = 0;
         this.RoadTimes = 4
-        GlobalConfig.RoadSpeed = this.node.height / 2;
+        GlobalConfig.RoadSpeed = this.node.height / 1.5;
         GlobalConfig.Pix2Distance = this.RoadTimes * this.node.height;
     },
 
@@ -102,6 +102,7 @@ cc.Class({
     },
 
     placeFriendScore (records) {
+        return;
         console.log("start place friend record", records);
 
         var _currentDistance = this.getDistance();
@@ -217,7 +218,7 @@ cc.Class({
                 console.log("one destroy");
                 s.destroy();
 
-                var timeRand = Math.random() * 4000;
+                var timeRand = Math.random() * 6000;
                 setTimeout(this.placeStone.bind(this), timeRand, s.ppos, false, false);
             }, this, this.node.children[j])));
         }

@@ -83,9 +83,10 @@ cc.Class({
         this.is_social = true;
         var self = this;
 
-        FBInstant.getLeaderboardAsync('road_sailor_score_global')
+        FBInstant.getLeaderboardAsync('road_sailor_score_global_new2')
         .then(function(leaderboard) {
             console.log("hahahhahahahaahaha");
+            //return leaderboard.getEntriesAsync(100, 0);
             return leaderboard.getConnectedPlayerEntriesAsync(100, 0);
         })
         .then(function(entries) {
@@ -137,16 +138,17 @@ cc.Class({
             var rankLableShow = "";
             var rankLableShowName = "";
 
-            FBInstant.getLeaderboardAsync('road_sailor_score_global')
+            FBInstant.getLeaderboardAsync('road_sailor_score_global_new2')
             .then(function(leaderboard) {
                 console.log("hohohohohohoho");
                 return leaderboard.setScoreAsync(finalScore, '');
             })
             .then(function(entry) {
-                FBInstant.getLeaderboardAsync('road_sailor_score_global')
+                FBInstant.getLeaderboardAsync('road_sailor_score_global_new2')
                     .then(function(leaderboard) {
                         console.log("hihihihihihihi");
-                        return leaderboard.getConnectedPlayerEntriesAsync(100, 0);
+                        return leaderboard.getEntriesAsync(100, 0);
+                        //return leaderboard.getConnectedPlayerEntriesAsync(100, 0);
                     })
                     .then(function(entries) {
                         console.log("huhuhuhuhuhuhu", entries);
@@ -172,7 +174,7 @@ cc.Class({
             });
 
             setTimeout(function() {
-                if (self.adReady) {
+                if (self.adReady && finalScore > 444) {
                     self.preloadedInterstitial.showAsync()
                     .then(function() {
                         // Perform post-ad success operation
